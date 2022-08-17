@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SmartOrder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y81-VN-vXc">
+                                <rect key="frame" x="166.5" y="54" width="81" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="HIh-gg-05l"/>
+                                    <constraint firstAttribute="height" constant="70" id="wze-5t-Es8"/>
+                                </constraints>
+                                <state key="normal" title="Button" backgroundImage="square.and.arrow.up" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" imagePadding="0.0">
+                                    <imageReference key="image" image="note.text.badge.plus" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="36" scale="large"/>
+                                    <color key="baseForegroundColor" red="0.017757050430000001" green="0.67651120580000002" blue="0.62578797600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bLS-T0-LBc">
+                                <rect key="frame" x="20" y="156" width="374" height="239.5"/>
+                            </mapView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="9XN-78-fGV">
+                                <rect key="frame" x="0.0" y="422.5" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="R03-s5-0Sw">
+                                <rect key="frame" x="0.0" y="473.5" width="414" height="388.5"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bLS-T0-LBc" firstAttribute="top" secondItem="Y81-VN-vXc" secondAttribute="bottom" constant="32" id="24c-O1-GG6"/>
+                            <constraint firstItem="bLS-T0-LBc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Cdo-Ka-6aI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R03-s5-0Sw" secondAttribute="trailing" id="FOA-f7-qS4"/>
+                            <constraint firstItem="Y81-VN-vXc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="GfO-3i-GmC"/>
+                            <constraint firstItem="9XN-78-fGV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MK0-Mc-n9x"/>
+                            <constraint firstItem="R03-s5-0Sw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UUt-mS-Iuz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="R03-s5-0Sw" secondAttribute="bottom" id="Uai-Q0-5QV"/>
+                            <constraint firstItem="9XN-78-fGV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bxp-7y-BSL"/>
+                            <constraint firstItem="R03-s5-0Sw" firstAttribute="top" secondItem="9XN-78-fGV" secondAttribute="bottom" id="idC-gY-fJs"/>
+                            <constraint firstItem="Y81-VN-vXc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jmR-wE-lZM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bLS-T0-LBc" secondAttribute="trailing" constant="20" id="lme-2Z-ASK"/>
+                            <constraint firstItem="R03-s5-0Sw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="x9B-40-Fd9"/>
+                            <constraint firstItem="9XN-78-fGV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yAv-at-HLO"/>
+                            <constraint firstItem="9XN-78-fGV" firstAttribute="top" secondItem="bLS-T0-LBc" secondAttribute="bottom" constant="27" id="zjT-f6-hHn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="105.80357142857143"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
