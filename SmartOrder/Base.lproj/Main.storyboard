@@ -96,10 +96,28 @@
                             <constraint firstItem="oBx-L2-2mR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xEY-Yr-IjW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="SOMapView" destination="bLS-T0-LBc" id="Vdi-Bd-YZb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="71.651785714285708"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="OOk-Sd-kTr">
+            <objects>
+                <viewController id="miQ-al-y1J" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LvO-cg-Kd9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="acQ-oi-HhG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5MF-uj-I3F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="846" y="72"/>
         </scene>
     </scenes>
     <resources>
