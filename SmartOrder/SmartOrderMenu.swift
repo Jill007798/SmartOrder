@@ -9,11 +9,15 @@ import Foundation
 
 class SmartOrderMenu {
     
-    var dinerName = ""
+    var dinerName: String
     var hasOrderCache = false
     
     var aLaCarteMenu: [String:MenuItem] = [:]
     var comboMenu: [ComboItem] = []
+    
+    init(dinerName: String) {
+        self.dinerName = dinerName
+    }
 }
 
 class MenuItem {

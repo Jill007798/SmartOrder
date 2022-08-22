@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var SOMapView: MKMapView!
     @IBOutlet var tableView: UITableView!
     
+    var menu1: SmartOrderMenu!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +30,9 @@ class ViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        menu1 = SmartOrderMenu(dinerName: "摩斯漢堡酒泉店")
+        
     }
 }
 
@@ -50,6 +54,25 @@ extension ViewController: UITableViewDataSource{
         customView.layer.borderColor = indexPath.row % 3 == 1 ? orderGreenAlphaHalf : orderOrangeAlphaHalf
         customView.layer.masksToBounds = true
         
+        let titleLabel = UILabel(frame: CGRect(x: 100, y: 0, width: 200, height: 50))
+        titleLabel.text = "\(menu1.dinerName)\(indexPath.row)"
+        titleLabel.textColor = UIColor.darkGray
+        titleLabel.font = UIFont(name: "Helvetica", size: 16)
+        customView.addSubview(titleLabel)
+        
+        let detailLabel = UILabel(frame: CGRect(x: 100, y: 30, width: 300, height: 40))
+        let dataFormatter = DateFormatter()
+        dataFormatter.dateFormat = "YYYY/MM/dd"
+        detailLabel.text = "上次使用：\(indexPath.row) 天前  創建日期 : \(dataFormatter.string(from: Date()))"
+        detailLabel.textColor = UIColor.darkGray
+        detailLabel.font = UIFont(name: "Helvetica", size: 12)
+        customView.addSubview(detailLabel)
+
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 15, width: 40, height:40))
+        imageView.image = UIImage(named: "food-vector-free-icon-set-\(Int.random(in: 21..<41))")
+        imageView.image = imageView.image?.alpha(0.5)
+        customView.addSubview(imageView)
+                
         return cell
     }
     
@@ -59,4 +82,13 @@ extension ViewController: UITableViewDataSource{
     }
 }
 
+extension UIImage {
 
+    func alpha(_ value:CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+}
