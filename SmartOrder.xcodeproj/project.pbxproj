@@ -16,6 +16,7 @@
 		47F4F4D128AC9A3900DA062A /* SmartOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F4F4D028AC9A3900DA062A /* SmartOrderTests.swift */; };
 		47F4F4DB28AC9A3900DA062A /* SmartOrderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F4F4DA28AC9A3900DA062A /* SmartOrderUITests.swift */; };
 		47F4F4DD28AC9A3900DA062A /* SmartOrderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F4F4DC28AC9A3900DA062A /* SmartOrderUITestsLaunchTests.swift */; };
+		47F4F4EA28ADEDEB00DA062A /* SmartOrderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F4F4E928ADEDEB00DA062A /* SmartOrderMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		47F4F4D628AC9A3900DA062A /* SmartOrderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartOrderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F4F4DA28AC9A3900DA062A /* SmartOrderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartOrderUITests.swift; sourceTree = "<group>"; };
 		47F4F4DC28AC9A3900DA062A /* SmartOrderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartOrderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		47F4F4E928ADEDEB00DA062A /* SmartOrderMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartOrderMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				47F4F4C228AC9A3900DA062A /* Assets.xcassets */,
 				47F4F4C428AC9A3900DA062A /* LaunchScreen.storyboard */,
 				47F4F4C728AC9A3900DA062A /* Info.plist */,
+				47F4F4E928ADEDEB00DA062A /* SmartOrderMenu.swift */,
 			);
 			path = SmartOrder;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				47F4F4BE28AC9A3700DA062A /* ViewController.swift in Sources */,
 				47F4F4BA28AC9A3700DA062A /* AppDelegate.swift in Sources */,
 				47F4F4BC28AC9A3700DA062A /* SceneDelegate.swift in Sources */,
+				47F4F4EA28ADEDEB00DA062A /* SmartOrderMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
