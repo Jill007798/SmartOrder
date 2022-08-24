@@ -23,6 +23,12 @@ class ViewController: UIViewController {
     var menu1: SmartOrderMenu!
     let dataFormatter = DateFormatter()
     
+    @IBAction func addMenuButtonClick(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "addVC")
+        self.present(vc, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,3 +98,5 @@ extension UIImage {
         return newImage!
     }
 }
+
+

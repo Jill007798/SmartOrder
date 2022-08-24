@@ -43,9 +43,7 @@
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="miQ-al-y1J" kind="popoverPresentation" popoverAnchorView="3Se-pf-7KA" id="uPd-hB-MGb">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="addMenuButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="05Z-oN-Hqe"/>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bLS-T0-LBc">
@@ -152,13 +150,13 @@
         <!--Add View Controller-->
         <scene sceneID="OOk-Sd-kTr">
             <objects>
-                <viewController id="miQ-al-y1J" customClass="AddViewController" customModule="SmartOrder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addVC" modalPresentationStyle="fullScreen" id="miQ-al-y1J" customClass="AddViewController" customModule="SmartOrder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LvO-cg-Kd9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5S-Uv-kfE">
-                                <rect key="frame" x="20" y="782" width="374" height="60"/>
+                                <rect key="frame" x="20" y="802" width="374" height="60"/>
                                 <color key="backgroundColor" red="0.95365742689999999" green="0.96309957960000003" blue="0.96309957960000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="FU7-yJ-rlO"/>
@@ -179,7 +177,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r9L-5x-rnM">
-                                <rect key="frame" x="10" y="10" width="394" height="762"/>
+                                <rect key="frame" x="10" y="10" width="394" height="782"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -196,7 +194,6 @@
                             <constraint firstItem="r9L-5x-rnM" firstAttribute="leading" secondItem="acQ-oi-HhG" secondAttribute="leading" constant="10" id="wcl-mW-a4Z"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hRD-72-1zx"/>
                     <connections>
                         <outlet property="AddTableView" destination="r9L-5x-rnM" id="4hv-3f-Ucz"/>
                     </connections>
