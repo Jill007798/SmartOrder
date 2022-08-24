@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var menu1: SmartOrderMenu!
+    let dataFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +34,7 @@ class ViewController: UIViewController {
         self.tableView.dataSource = self
         
         menu1 = SmartOrderMenu(dinerName: "摩斯漢堡酒泉店")
-        
+        dataFormatter.dateFormat = "YYYY / MM / dd"
     }
 }
 
@@ -54,16 +56,14 @@ extension ViewController: UITableViewDataSource{
         customView.layer.borderColor = indexPath.row % 3 == 1 ? orderGreenAlphaHalf : orderOrangeAlphaHalf
         customView.layer.masksToBounds = true
         
-        let titleLabel = UILabel(frame: CGRect(x: 100, y: 0, width: 200, height: 50))
+        let titleLabel = UILabel(frame: CGRect(x: 90, y: 0, width: 200, height: 50))
         titleLabel.text = "\(menu1.dinerName)\(indexPath.row)"
         titleLabel.textColor = UIColor.darkGray
         titleLabel.font = UIFont(name: "Helvetica", size: 16)
         customView.addSubview(titleLabel)
         
-        let detailLabel = UILabel(frame: CGRect(x: 100, y: 30, width: 300, height: 40))
-        let dataFormatter = DateFormatter()
-        dataFormatter.dateFormat = "YYYY/MM/dd"
-        detailLabel.text = "上次使用：\(indexPath.row) 天前  創建日期 : \(dataFormatter.string(from: Date()))"
+        let detailLabel = UILabel(frame: CGRect(x: 90, y: 30, width: 300, height: 40))
+        detailLabel.text = "使用次數：\(menu1.usedTimes) 次  創建日期 : \(dataFormatter.string(from: menu1.createdDate))"
         detailLabel.textColor = UIColor.darkGray
         detailLabel.font = UIFont(name: "Helvetica", size: 12)
         customView.addSubview(detailLabel)

@@ -11,12 +11,16 @@ class SmartOrderMenu {
     
     var dinerName: String
     var hasOrderCache = false
-    
+    var createdDate: Date
+    var usedTimes: Int
+
     var aLaCarteMenu: [String:MenuItem] = [:]
     var comboMenu: [ComboItem] = []
     
     init(dinerName: String) {
         self.dinerName = dinerName
+        self.createdDate = Date.now
+        self.usedTimes = 0
     }
 }
 

@@ -42,6 +42,11 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20" scale="large"/>
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="miQ-al-y1J" kind="popoverPresentation" popoverAnchorView="3Se-pf-7KA" id="uPd-hB-MGb">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bLS-T0-LBc">
                                 <rect key="frame" x="20" y="110" width="374" height="300"/>
@@ -144,20 +149,61 @@
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="71.651785714285708"/>
         </scene>
-        <!--View Controller-->
+        <!--Add View Controller-->
         <scene sceneID="OOk-Sd-kTr">
             <objects>
-                <viewController id="miQ-al-y1J" sceneMemberID="viewController">
+                <viewController id="miQ-al-y1J" customClass="AddViewController" customModule="SmartOrder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LvO-cg-Kd9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5S-Uv-kfE">
+                                <rect key="frame" x="20" y="782" width="374" height="60"/>
+                                <color key="backgroundColor" red="0.95365742689999999" green="0.96309957960000003" blue="0.96309957960000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="FU7-yJ-rlO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" red="0.017757050430000001" green="0.67651120580000002" blue="0.62578797600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="nextButtonClicked:" destination="miQ-al-y1J" eventType="touchUpInside" id="Ib6-dk-gQf"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r9L-5x-rnM">
+                                <rect key="frame" x="10" y="10" width="394" height="762"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="acQ-oi-HhG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="r9L-5x-rnM" firstAttribute="top" secondItem="LvO-cg-Kd9" secondAttribute="top" constant="10" id="74O-ze-MFl"/>
+                            <constraint firstItem="acQ-oi-HhG" firstAttribute="bottom" secondItem="Z5S-Uv-kfE" secondAttribute="bottom" id="RPf-Yf-fqn"/>
+                            <constraint firstItem="acQ-oi-HhG" firstAttribute="trailing" secondItem="Z5S-Uv-kfE" secondAttribute="trailing" constant="20" id="cXn-Is-OjA"/>
+                            <constraint firstItem="Z5S-Uv-kfE" firstAttribute="leading" secondItem="acQ-oi-HhG" secondAttribute="leading" constant="20" id="eza-wZ-IdC"/>
+                            <constraint firstItem="r9L-5x-rnM" firstAttribute="trailing" secondItem="acQ-oi-HhG" secondAttribute="trailing" constant="-10" id="toS-Y5-Oe6"/>
+                            <constraint firstItem="Z5S-Uv-kfE" firstAttribute="top" secondItem="r9L-5x-rnM" secondAttribute="bottom" constant="10" id="txJ-Vc-Gi3"/>
+                            <constraint firstItem="r9L-5x-rnM" firstAttribute="leading" secondItem="acQ-oi-HhG" secondAttribute="leading" constant="10" id="wcl-mW-a4Z"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="hRD-72-1zx"/>
+                    <connections>
+                        <outlet property="AddTableView" destination="r9L-5x-rnM" id="4hv-3f-Ucz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5MF-uj-I3F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846" y="72"/>
+            <point key="canvasLocation" x="1037.68115942029" y="71.651785714285708"/>
         </scene>
     </scenes>
     <resources>
