@@ -18,13 +18,20 @@ class AddViewController: UIViewController {
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+  
+        
+    @IBAction func cancelButtonClick(_ sender: Any) {
         let alert = UIAlertController(title: "注意！", message: "資料將清空", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: {_ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alert.addAction(okAction)
+        alert.addAction(cancelAction)
+
         present(alert, animated: true, completion: nil)
     }
-        
+    
     @IBAction func nextButtonClicked(_ sender: Any) {
         
         

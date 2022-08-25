@@ -177,18 +177,33 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r9L-5x-rnM">
-                                <rect key="frame" x="10" y="10" width="394" height="782"/>
+                                <rect key="frame" x="10" y="93.5" width="394" height="698.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jn5-IN-Z6m">
+                                <rect key="frame" x="324" y="40" width="70" height="45.5"/>
+                                <color key="tintColor" red="0.017757050430000001" green="0.67651120580000002" blue="0.62578797600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="xmark.circle.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="26"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="cancelButtonClick:" destination="miQ-al-y1J" eventType="touchUpInside" id="XEg-9N-MJg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="acQ-oi-HhG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="r9L-5x-rnM" firstAttribute="top" secondItem="LvO-cg-Kd9" secondAttribute="top" constant="10" id="74O-ze-MFl"/>
                             <constraint firstItem="acQ-oi-HhG" firstAttribute="bottom" secondItem="Z5S-Uv-kfE" secondAttribute="bottom" id="RPf-Yf-fqn"/>
+                            <constraint firstItem="jn5-IN-Z6m" firstAttribute="top" secondItem="LvO-cg-Kd9" secondAttribute="top" constant="40" id="aDa-Wh-LYR"/>
                             <constraint firstItem="acQ-oi-HhG" firstAttribute="trailing" secondItem="Z5S-Uv-kfE" secondAttribute="trailing" constant="20" id="cXn-Is-OjA"/>
                             <constraint firstItem="Z5S-Uv-kfE" firstAttribute="leading" secondItem="acQ-oi-HhG" secondAttribute="leading" constant="20" id="eza-wZ-IdC"/>
+                            <constraint firstItem="acQ-oi-HhG" firstAttribute="trailing" secondItem="jn5-IN-Z6m" secondAttribute="trailing" constant="20" id="g55-Up-cEq"/>
+                            <constraint firstItem="r9L-5x-rnM" firstAttribute="top" secondItem="jn5-IN-Z6m" secondAttribute="bottom" constant="8" symbolic="YES" id="gXk-G8-7iv"/>
+                            <constraint firstItem="jn5-IN-Z6m" firstAttribute="leading" secondItem="acQ-oi-HhG" secondAttribute="leading" constant="324" id="s3E-y8-e89"/>
                             <constraint firstItem="r9L-5x-rnM" firstAttribute="trailing" secondItem="acQ-oi-HhG" secondAttribute="trailing" constant="-10" id="toS-Y5-Oe6"/>
                             <constraint firstItem="Z5S-Uv-kfE" firstAttribute="top" secondItem="r9L-5x-rnM" secondAttribute="bottom" constant="10" id="txJ-Vc-Gi3"/>
                             <constraint firstItem="r9L-5x-rnM" firstAttribute="leading" secondItem="acQ-oi-HhG" secondAttribute="leading" constant="10" id="wcl-mW-a4Z"/>
@@ -205,6 +220,7 @@
     </scenes>
     <resources>
         <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
