@@ -14,6 +14,7 @@ class AddViewController: UIViewController {
     var tableTypeList = [tableType.Category,tableType.Item]
     var screenWidth: CGFloat { return UIScreen.main.bounds.width }
     var screenHeight: CGFloat { return UIScreen.main.bounds.height }
+    let uitableviewcellHeight = 60.0
     
     enum tableType {
         case Category
@@ -23,6 +24,7 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AddTableView.dataSource = self
+        AddTableView.delegate = self
     }
     
     @IBAction func cancelButtonClick(_ sender: Any) {
@@ -70,6 +72,13 @@ class AddViewController: UIViewController {
     }
 }
 
+extension AddViewController: UITableViewDelegate{
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return uitableviewcellHeight
+    }
+}
+
 extension AddViewController: UITableViewDataSource{
     
     
@@ -78,7 +87,12 @@ extension AddViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let UITableViewCell = UITableViewCell(frame: CGRect(x: 10, y: 10, width: 100, height: 50))
+        let UITableViewCell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: screenWidth , height: 60))
+        UITableViewCell.contentView.frame = CGRect(x: 10, y: 5, width: screenWidth - 20, height: 70)
+        UITableViewCell.contentView.backgroundColor = UIColor(cgColor: orderGray)
+        UITableViewCell.contentView.layer.cornerRadius = 10
+        UITableViewCell.contentView.layer.masksToBounds = true
+        UITableViewCell.contentView.tintColor = UIColor.gray
 
         switch tableTypeList[indexPath.row] {
         case tableType.Category:
@@ -90,7 +104,7 @@ extension AddViewController: UITableViewDataSource{
             UITableViewCell.contentView.addSubview(addButton)
             
             let minusButton = UIButton(frame: CGRect(x: UITableViewCell.frame.width - 50, y:10 , width: 50, height: 50))
-            minusButton.setImage(UIImage(systemName:"minus.circle.fill"), for: UIControl.State.normal)
+            minusButton.setImage(UIImage(systemName:"minus.circle"), for: UIControl.State.normal)
             minusButton.tag = indexPath.row
             minusButton.addTarget(self, action: #selector(minusButtonPressed), for: .touchUpInside)
             UITableViewCell.contentView.addSubview(minusButton)
@@ -98,7 +112,8 @@ extension AddViewController: UITableViewDataSource{
             let textField = UITextField(frame: CGRect(x: 60, y: 10, width: 100, height: 50))
             textField.placeholder = "分類名稱"
             textField.delegate = self
-            UITableViewCell.addSubview(textField)
+            UITableViewCell.contentView.addSubview(textField)
+            
             
         case tableType.Item:
             
@@ -109,7 +124,7 @@ extension AddViewController: UITableViewDataSource{
             UITableViewCell.contentView.addSubview(addButton)
             
             let minusButton = UIButton(frame: CGRect(x: UITableViewCell.frame.width - 50, y:10 , width: 50, height: 50))
-            minusButton.setImage(UIImage(systemName:"minus.circle.fill"), for: UIControl.State.normal)
+            minusButton.setImage(UIImage(systemName:"minus.circle"), for: UIControl.State.normal)
             minusButton.tag = indexPath.row
             minusButton.addTarget(self, action: #selector(minusButtonPressed), for: .touchUpInside)
             UITableViewCell.contentView.addSubview(minusButton)
@@ -117,7 +132,7 @@ extension AddViewController: UITableViewDataSource{
             let textField = UITextField(frame: CGRect(x: 100, y: 10, width: 100, height: 50))
             textField.placeholder = "品項名稱"
             textField.delegate = self
-            UITableViewCell.addSubview(textField)
+            UITableViewCell.contentView.addSubview(textField)
         }
 
         return UITableViewCell

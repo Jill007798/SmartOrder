@@ -10,9 +10,11 @@ import MapKit
 
 let orderGreen = CGColor(red: 37/255, green: 161/255, blue: 147/255, alpha: 1)
 let orderOrange = CGColor(red: 245/255, green: 106/255, blue: 52/255, alpha: 1)
+let orderGray = CGColor(red: 240/255, green: 243/255, blue: 243/255, alpha: 1)
 
 let orderGreenAlphaHalf = CGColor(red: 37/255, green: 161/255, blue: 147/255, alpha: 0.5)
 let orderOrangeAlphaHalf = CGColor(red: 245/255, green: 106/255, blue: 52/255, alpha: 0.5)
+let orderGrayAlphaHalf = CGColor(red: 240/255, green: 243/255, blue: 243/255, alpha: 0.5)
 
 
 class ViewController: UIViewController {
