@@ -9,7 +9,7 @@ import UIKit
 
 
 class AddViewController: UIViewController {
-
+    
     @IBOutlet weak var AddTableView: UITableView!
     var tableTypeList = [tableType.Category,tableType.Item]
     var screenWidth: CGFloat { return UIScreen.main.bounds.width }
@@ -20,7 +20,7 @@ class AddViewController: UIViewController {
         case Category
         case Item
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         AddTableView.dataSource = self
@@ -29,12 +29,12 @@ class AddViewController: UIViewController {
     
     @IBAction func cancelButtonClick(_ sender: Any) {
         let alert = UIAlertController(title: "注意！", message: "資料將清空", preferredStyle: .alert)
-
+        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
             self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-
+        
         present(alert, animated: true, completion: nil)
     }
     
@@ -50,17 +50,13 @@ class AddViewController: UIViewController {
     }
     
     @objc func minusButtonPressed(sender: UIButton) {
-        switch tableTypeList[sender.tag] {
-        case tableType.Category:
-            tableTypeList.remove(at: sender.tag)
-            for i in sender.tag..<tableTypeList.count {
-                if i == tableTypeList.count - 1 || tableTypeList[i] == tableType.Category
-                {
-                    break
-                }
-                tableTypeList.remove(at: i)
-            }
-        case tableType.Item:
+      
+        if tableTypeList[sender.tag - 1] == tableType.Category && (sender.tag == (tableTypeList.count - 1) || tableTypeList[sender.tag + 1] == tableType.Category) {
+            
+            tableTypeList.remove(at: sender.tag - 1)
+            tableTypeList.remove(at: sender.tag - 1)
+        }else
+        {
             tableTypeList.remove(at: sender.tag)
         }
         AddTableView.reloadData()
@@ -73,7 +69,7 @@ class AddViewController: UIViewController {
 }
 
 extension AddViewController: UITableViewDelegate{
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableViewCellHeight
     }
@@ -93,10 +89,10 @@ extension AddViewController: UITableViewDataSource{
         UITableViewCell.contentView.layer.cornerRadius = 10
         UITableViewCell.contentView.layer.masksToBounds = true
         UITableViewCell.contentView.tintColor = UIColor.gray
-
-        let imageEdgeInsets = 10.0
+        
+        let imageEdgeInsets = 13.0
         let itemRowIndent = 50.0
-
+        
         switch tableTypeList[indexPath.row] {
         case tableType.Category:
             
@@ -108,13 +104,6 @@ extension AddViewController: UITableViewDataSource{
             addButton.tag = indexPath.row
             addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
             UITableViewCell.contentView.addSubview(addButton)
-            
-            let minusButton = UIButton(frame: CGRect(x:screenWidth - tableViewCellHeight - imageEdgeInsets, y:imageEdgeInsets , width: tableViewCellHeight - imageEdgeInsets*2, height: tableViewCellHeight - imageEdgeInsets*2))
-            config.background.image = UIImage(systemName:"minus.circle")
-            minusButton.configuration = config
-            minusButton.tag = indexPath.row
-            minusButton.addTarget(self, action: #selector(minusButtonPressed), for: .touchUpInside)
-            UITableViewCell.contentView.addSubview(minusButton)
             
             let textField = UITextField(frame: CGRect(x: tableViewCellHeight, y: 0, width: screenWidth - tableViewCellHeight*2, height: tableViewCellHeight))
             textField.placeholder = "請輸入分類名稱..."
@@ -145,7 +134,7 @@ extension AddViewController: UITableViewDataSource{
             textField.delegate = self
             UITableViewCell.contentView.addSubview(textField)
         }
-
+        
         return UITableViewCell
     }
 }
@@ -153,7 +142,7 @@ extension AddViewController: UITableViewDataSource{
 extension AddViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            self.view.endEditing(true)
-            return false
-        }
+        self.view.endEditing(true)
+        return false
+    }
 }
