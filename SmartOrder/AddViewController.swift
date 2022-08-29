@@ -14,7 +14,7 @@ class AddViewController: UIViewController {
     var tableTypeList = [tableType.Category,tableType.Item]
     var screenWidth: CGFloat { return UIScreen.main.bounds.width }
     var screenHeight: CGFloat { return UIScreen.main.bounds.height }
-    let uitableviewcellHeight = 60.0
+    let tableViewCellHeight = 60.0
     
     enum tableType {
         case Category
@@ -75,7 +75,7 @@ class AddViewController: UIViewController {
 extension AddViewController: UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return uitableviewcellHeight
+        return tableViewCellHeight
     }
 }
 
@@ -87,50 +87,61 @@ extension AddViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let UITableViewCell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: screenWidth , height: 60))
-        UITableViewCell.contentView.frame = CGRect(x: 10, y: 5, width: screenWidth - 20, height: 70)
+        let UITableViewCell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: screenWidth , height: tableViewCellHeight))
+        UITableViewCell.contentView.frame = CGRect(x: 10, y: 5, width: screenWidth - 20, height: tableViewCellHeight)
         UITableViewCell.contentView.backgroundColor = UIColor(cgColor: orderGray)
         UITableViewCell.contentView.layer.cornerRadius = 10
         UITableViewCell.contentView.layer.masksToBounds = true
         UITableViewCell.contentView.tintColor = UIColor.gray
 
+        let imageEdgeInsets = 10.0
+        let itemRowIndent = 50.0
+
         switch tableTypeList[indexPath.row] {
         case tableType.Category:
             
-            let addButton = UIButton(frame: CGRect(x: 10, y: 10, width: 50, height: 50))
-            addButton.setImage(UIImage(systemName:"plus.circle.fill"), for: UIControl.State.normal)
+            let addButton = UIButton(frame: CGRect(x: imageEdgeInsets, y: imageEdgeInsets, width: tableViewCellHeight - imageEdgeInsets*2, height: tableViewCellHeight - imageEdgeInsets*2))
+            var config = UIButton.Configuration.plain()
+            config.background.image = UIImage(systemName:"plus.circle.fill")
+            config.background.imageContentMode = .scaleAspectFill
+            addButton.configuration = config
             addButton.tag = indexPath.row
             addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
             UITableViewCell.contentView.addSubview(addButton)
             
-            let minusButton = UIButton(frame: CGRect(x: UITableViewCell.frame.width - 50, y:10 , width: 50, height: 50))
-            minusButton.setImage(UIImage(systemName:"minus.circle"), for: UIControl.State.normal)
+            let minusButton = UIButton(frame: CGRect(x:screenWidth - tableViewCellHeight - imageEdgeInsets, y:imageEdgeInsets , width: tableViewCellHeight - imageEdgeInsets*2, height: tableViewCellHeight - imageEdgeInsets*2))
+            config.background.image = UIImage(systemName:"minus.circle")
+            minusButton.configuration = config
             minusButton.tag = indexPath.row
             minusButton.addTarget(self, action: #selector(minusButtonPressed), for: .touchUpInside)
             UITableViewCell.contentView.addSubview(minusButton)
             
-            let textField = UITextField(frame: CGRect(x: 60, y: 10, width: 100, height: 50))
-            textField.placeholder = "分類名稱"
+            let textField = UITextField(frame: CGRect(x: tableViewCellHeight, y: 0, width: screenWidth - tableViewCellHeight*2, height: tableViewCellHeight))
+            textField.placeholder = "請輸入分類名稱..."
             textField.delegate = self
             UITableViewCell.contentView.addSubview(textField)
             
             
         case tableType.Item:
             
-            let addButton = UIButton(frame: CGRect(x: 30, y: 10, width: 50, height: 50))
-            addButton.setImage(UIImage(systemName:"plus.circle.fill"), for: UIControl.State.normal)
+            let addButton = UIButton(frame: CGRect(x: imageEdgeInsets + itemRowIndent, y: imageEdgeInsets, width: tableViewCellHeight - imageEdgeInsets*2, height: tableViewCellHeight - imageEdgeInsets*2))
             addButton.tag = indexPath.row
+            var config = UIButton.Configuration.plain()
+            config.background.image = UIImage(systemName:"plus.circle.fill")
+            config.background.imageContentMode = .scaleAspectFill
+            addButton.configuration = config
             addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
             UITableViewCell.contentView.addSubview(addButton)
             
-            let minusButton = UIButton(frame: CGRect(x: UITableViewCell.frame.width - 50, y:10 , width: 50, height: 50))
-            minusButton.setImage(UIImage(systemName:"minus.circle"), for: UIControl.State.normal)
+            let minusButton = UIButton(frame: CGRect(x: screenWidth - tableViewCellHeight - imageEdgeInsets, y:imageEdgeInsets , width: tableViewCellHeight - imageEdgeInsets*2, height: tableViewCellHeight - imageEdgeInsets*2))
             minusButton.tag = indexPath.row
+            config.background.image = UIImage(systemName:"minus.circle")
+            minusButton.configuration = config
             minusButton.addTarget(self, action: #selector(minusButtonPressed), for: .touchUpInside)
             UITableViewCell.contentView.addSubview(minusButton)
             
-            let textField = UITextField(frame: CGRect(x: 100, y: 10, width: 100, height: 50))
-            textField.placeholder = "品項名稱"
+            let textField = UITextField(frame: CGRect(x: tableViewCellHeight + itemRowIndent, y: 0.0, width: screenWidth - tableViewCellHeight*2 - itemRowIndent, height: tableViewCellHeight))
+            textField.placeholder = "請輸入品項名稱..."
             textField.delegate = self
             UITableViewCell.contentView.addSubview(textField)
         }
