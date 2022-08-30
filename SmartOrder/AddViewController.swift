@@ -12,6 +12,9 @@ class AddViewController: UIViewController {
     
     @IBOutlet weak var AddTableView: UITableView!
     var tableTypeList = [tableType.Category,tableType.Item]
+    var tableNameList = ["",""]
+    var tablePriceList = [0,0]
+
     var screenWidth: CGFloat { return UIScreen.main.bounds.width }
     var screenHeight: CGFloat { return UIScreen.main.bounds.height }
     let tableViewCellHeight = 60.0
@@ -50,9 +53,15 @@ class AddViewController: UIViewController {
         case tableType.Category:
             tableTypeList.append(tableType.Category)
             tableTypeList.append(tableType.Item)
+            
+            dataIncrease(index: -1, times: 2)
+            
         case tableType.Item:
-            tableTypeList.insert(tableType.Item, at: sender.tag)
+            tableTypeList.insert(tableType.Item, at: sender.tag + 1)
+            
+            dataIncrease(index: sender.tag + 1, times: 1)
         }
+        updateMenuData()
         AddTableView.reloadData()
     }
     
@@ -62,11 +71,35 @@ class AddViewController: UIViewController {
             
             tableTypeList.remove(at: sender.tag - 1)
             tableTypeList.remove(at: sender.tag - 1)
+            
+            dataDecrease(index:  sender.tag - 1, times: 2)
         }else
         {
             tableTypeList.remove(at: sender.tag)
+            
+            dataDecrease(index: sender.tag, times: 1)
         }
+        updateMenuData()
         AddTableView.reloadData()
+    }
+    
+    func dataIncrease(index:Int , times:Int) -> Void {
+        for _ in 1...times {
+            if index == -1 {
+                tableNameList.append("")
+                tablePriceList.append(0)
+            }else{
+                tableNameList.insert("", at: index)
+                tablePriceList.insert(0, at: index)
+            }
+        }
+    }
+    
+    func dataDecrease(index:Int , times:Int) -> Void {
+        for _ in 1...times {
+            tableNameList.remove(at: index)
+            tablePriceList.remove(at: index)
+        }
     }
     
     func updateMenuData() -> Void {
@@ -96,7 +129,13 @@ extension AddViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let UITableViewCell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: screenWidth , height: tableViewCellHeight))
         UITableViewCell.contentView.frame = CGRect(x: 10, y: 5, width: screenWidth - 20, height: tableViewCellHeight)
-        UITableViewCell.contentView.backgroundColor = UIColor(cgColor: orderGray)
+        if self.traitCollection.userInterfaceStyle == .dark {
+            UITableViewCell.contentView.backgroundColor = UIColor.black
+
+        }else
+        {
+            UITableViewCell.contentView.backgroundColor = UIColor(cgColor: orderGray)
+        }
         UITableViewCell.contentView.layer.cornerRadius = 10
         UITableViewCell.contentView.layer.masksToBounds = true
         UITableViewCell.contentView.tintColor = UIColor.gray
@@ -118,7 +157,11 @@ extension AddViewController: UITableViewDataSource{
             UITableViewCell.contentView.addSubview(addButton)
             
             let textField = UITextField(frame: CGRect(x: tableViewCellHeight, y: 0, width: screenWidth - tableViewCellHeight*2, height: tableViewCellHeight))
-            textField.placeholder = "請輸入分類名稱..."
+            if tableNameList[indexPath.row] == "" {
+                textField.placeholder = "請輸入品項名稱..."
+            }else {
+                textField.text = tableNameList[indexPath.row]
+            }
             textField.tag = 1000 + indexPath.row
             textField.delegate = self
             UITableViewCell.contentView.addSubview(textField)
@@ -144,15 +187,23 @@ extension AddViewController: UITableViewDataSource{
             }
             
             let textField = UITextField(frame: CGRect(x: tableViewCellHeight + itemRowIndent, y: 0.0, width: screenWidth - tableViewCellHeight*2 - itemRowIndent - priceTextFieldWidth, height: tableViewCellHeight))
-            textField.placeholder = "請輸入品項名稱..."
+            if tableNameList[indexPath.row] == "" {
+                textField.placeholder = "請輸入品項名稱..."
+            }else {
+                textField.text = tableNameList[indexPath.row]
+            }
             textField.delegate = self
-            textField.tag = 2000 + indexPath.row
+            textField.tag = 1000 + indexPath.row
             UITableViewCell.contentView.addSubview(textField)
             
             let priceTextField = UITextField(frame: CGRect(x: screenWidth - tableViewCellHeight - priceTextFieldWidth, y: 0.0, width: priceTextFieldWidth, height: tableViewCellHeight))
-            priceTextField.placeholder = "價格.."
+            if tablePriceList[indexPath.row] == 0 {
+                priceTextField.placeholder = "價格.."
+            }else {
+                priceTextField.text = "\(tablePriceList[indexPath.row])"
+            }
             priceTextField.delegate = self
-            priceTextField.tag = 3000 + indexPath.row
+            priceTextField.tag = 2000 + indexPath.row
             priceTextField.keyboardType = .asciiCapableNumberPad
             UITableViewCell.contentView.addSubview(priceTextField)
         }
@@ -169,7 +220,16 @@ extension AddViewController: UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        print(textField.tag)
+        if textField.tag >= 1000 && textField.tag < 2000 {
+            let i = textField.tag - 1000
+            if let text = textField.text{
+                tableNameList[i] = text
+            }
+        }else if textField.tag > 2000 {
+            let i = textField.tag - 2000
+            if let text = textField.text{
+                tablePriceList[i] = Int(text)!
+            }
+        }
     }
 }
