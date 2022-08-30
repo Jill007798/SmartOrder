@@ -25,6 +25,13 @@ class AddViewController: UIViewController {
         super.viewDidLoad()
         AddTableView.dataSource = self
         AddTableView.delegate = self
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func cancelButtonClick(_ sender: Any) {
@@ -62,6 +69,10 @@ class AddViewController: UIViewController {
         AddTableView.reloadData()
     }
     
+    func updateMenuData() -> Void {
+        
+    }
+    
     @IBAction func nextButtonClicked(_ sender: Any) {
         
         
@@ -90,8 +101,9 @@ extension AddViewController: UITableViewDataSource{
         UITableViewCell.contentView.layer.masksToBounds = true
         UITableViewCell.contentView.tintColor = UIColor.gray
         
-        let imageEdgeInsets = 13.0
-        let itemRowIndent = 50.0
+        let imageEdgeInsets = 12.0
+        let itemRowIndent = 30.0
+        let priceTextFieldWidth = 60.0
         
         switch tableTypeList[indexPath.row] {
         case tableType.Category:
@@ -107,10 +119,10 @@ extension AddViewController: UITableViewDataSource{
             
             let textField = UITextField(frame: CGRect(x: tableViewCellHeight, y: 0, width: screenWidth - tableViewCellHeight*2, height: tableViewCellHeight))
             textField.placeholder = "請輸入分類名稱..."
+            textField.tag = 1000 + indexPath.row
             textField.delegate = self
             UITableViewCell.contentView.addSubview(textField)
-            
-            
+
         case tableType.Item:
             
             let addButton = UIButton(frame: CGRect(x: imageEdgeInsets + itemRowIndent, y: imageEdgeInsets, width: tableViewCellHeight - imageEdgeInsets*2, height: tableViewCellHeight - imageEdgeInsets*2))
@@ -122,17 +134,27 @@ extension AddViewController: UITableViewDataSource{
             addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
             UITableViewCell.contentView.addSubview(addButton)
             
-            let minusButton = UIButton(frame: CGRect(x: screenWidth - tableViewCellHeight - imageEdgeInsets, y:imageEdgeInsets , width: tableViewCellHeight - imageEdgeInsets*2, height: tableViewCellHeight - imageEdgeInsets*2))
-            minusButton.tag = indexPath.row
-            config.background.image = UIImage(systemName:"minus.circle")
-            minusButton.configuration = config
-            minusButton.addTarget(self, action: #selector(minusButtonPressed), for: .touchUpInside)
-            UITableViewCell.contentView.addSubview(minusButton)
+            if indexPath.row > 1 {
+                let minusButton = UIButton(frame: CGRect(x: screenWidth - tableViewCellHeight - imageEdgeInsets, y:imageEdgeInsets , width: tableViewCellHeight - imageEdgeInsets*2, height: tableViewCellHeight - imageEdgeInsets*2))
+                minusButton.tag = indexPath.row
+                config.background.image = UIImage(systemName:"minus.circle")
+                minusButton.configuration = config
+                minusButton.addTarget(self, action: #selector(minusButtonPressed), for: .touchUpInside)
+                UITableViewCell.contentView.addSubview(minusButton)
+            }
             
-            let textField = UITextField(frame: CGRect(x: tableViewCellHeight + itemRowIndent, y: 0.0, width: screenWidth - tableViewCellHeight*2 - itemRowIndent, height: tableViewCellHeight))
+            let textField = UITextField(frame: CGRect(x: tableViewCellHeight + itemRowIndent, y: 0.0, width: screenWidth - tableViewCellHeight*2 - itemRowIndent - priceTextFieldWidth, height: tableViewCellHeight))
             textField.placeholder = "請輸入品項名稱..."
             textField.delegate = self
+            textField.tag = 2000 + indexPath.row
             UITableViewCell.contentView.addSubview(textField)
+            
+            let priceTextField = UITextField(frame: CGRect(x: screenWidth - tableViewCellHeight - priceTextFieldWidth, y: 0.0, width: priceTextFieldWidth, height: tableViewCellHeight))
+            priceTextField.placeholder = "價格.."
+            priceTextField.delegate = self
+            priceTextField.tag = 3000 + indexPath.row
+            priceTextField.keyboardType = .asciiCapableNumberPad
+            UITableViewCell.contentView.addSubview(priceTextField)
         }
         
         return UITableViewCell
@@ -144,5 +166,10 @@ extension AddViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        print(textField.tag)
     }
 }
